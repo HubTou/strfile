@@ -13,7 +13,7 @@ import struct
 import sys
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.0 (July 29, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.1 (August 7, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by command line options
 parameters = {
@@ -368,6 +368,23 @@ def read_strfile_body(datafile, number_of_strings):
 
 
 ################################################################################
+def get_file_linesep(file):
+    """Return the line separator used in a file"""
+    try:
+        while true:
+            character = file.read(1)
+            character = character.decode("utf-8", "replace")
+
+            if character == '\r':
+                return "\r\n"
+
+            if character == '\n':
+                return "\n"
+    except:
+        return "\n"
+
+
+################################################################################
 def read_fortune(datafile, offset, delimiting_character):
     """Returns the fortune at datafile/offset"""
 
@@ -375,6 +392,10 @@ def read_fortune(datafile, offset, delimiting_character):
         return None
 
     with open(datafile, "rb") as file:
+        # We can't rely on the local os.linesep because the data file may have been generated
+        # on a platform where its value is different
+        file_linesep = get_file_linesep(file)
+
         file.seek(offset)
 
         line = ""
@@ -392,19 +413,19 @@ def read_fortune(datafile, offset, delimiting_character):
 
             if in_end_of_line:
                 in_end_of_line = False
-                if character == os.linesep[1]:
+                if character == file_linesep[1]:
                     new_line = True
                     if in_delimiting_character:
                         in_delimiting_character = False
                         end_of_string = True
                     else:
-                        line += os.linesep
+                        line += file_linesep
                     continue
                 in_delimiting_character = False
-                line += os.linesep[0] + character
+                line += file_linesep[0] + character
 
-            if character == os.linesep[0]:
-                if len(os.linesep) == 1:
+            if character == file_linesep[0]:
+                if len(file_linesep) == 1:
                     new_line = True
                     if in_delimiting_character:
                         in_delimiting_character = False
