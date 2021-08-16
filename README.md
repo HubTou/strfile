@@ -72,22 +72,23 @@ The STRFILE_DEBUG and UNSTR_DEBUG environment variables can also be set to any v
 
 ## SEE ALSO
 [byteorder(3)](https://www.freebsd.org/cgi/man.cgi?query=byteorder),
-[fortune(6)](https://www.freebsd.org/cgi/man.cgi?query=fortune&apropos=0&sektion=0&manpath=FreeBSD+14.0-current&arch=default&format=html)
+[fortune(6)](https://github.com/HubTou/fortune/blob/main/README.md)
 
 ## STANDARDS
-This implementation is fully compatible with the FreeBSD version.
+This re-implementation is fully compatible with the FreeBSD version.
 
 It tries to follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for [Python](https://www.python.org/) code.
 
 ## HISTORY
-Contributed by [Ken Arnold](https://en.wikipedia.org/wiki/Ken_Arnold), the **strfile** utility first appeared in 2.9BSD.
+Contributed by [Ken Arnold](https://en.wikipedia.org/wiki/Ken_Arnold), the **strfile** utility first appeared in 4.1cBSD.
 
-This implementation was made for [The PNU project](https://github.com/HubTou/PNU).
+This re-implementation was made for [The PNU project](https://github.com/HubTou/PNU).
 
 ## LICENSE
-This utility is available under the [3-clause BSD license](https://opensource.org/licenses/BSD-3-Clause).
+This version is available under the [3-clause BSD license](https://opensource.org/licenses/BSD-3-Clause).
 
 ## AUTHORS
 This version was written by [Hubert Tournier](https://github.com/HubTou).
 
-The man page is derived from the FreeBSD project's one.
+The man page is derived from the [FreeBSD project's one](https://www.freebsd.org/cgi/man.cgi?query=strfile).
+

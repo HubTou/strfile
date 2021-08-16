@@ -1,3 +1,4 @@
+SECTION=8
 SOURCES=src/strfile/__init__.py src/strfile/main.py
 
 # Default action is to show this help message:
@@ -42,13 +43,13 @@ format: /usr/local/bin/black
 love:
 	@echo "Not war!"
 
-man/strfile.8.gz: man/strfile.8
-	@gzip -k9c man/strfile.8 > man/strfile.8.gz
+man/strfile.${SECTION}.gz: man/strfile.${SECTION}
+	@gzip -k9c man/strfile.${SECTION} > man/strfile.${SECTION}.gz
 
-man/unstr.8.gz: man/unstr.8
-	@gzip -k9c man/unstr.8 > man/unstr.8.gz
+man/unstr.${SECTION}.gz: man/unstr.${SECTION}
+	@gzip -k9c man/unstr.${SECTION} > man/unstr.${SECTION}.gz
 
-package: man/strfile.8.gz man/unstr.8.gz
+package: man/strfile.${SECTION}.gz man/unstr.${SECTION}.gz
 	python -m build
 
 upload-test:
@@ -58,4 +59,5 @@ upload:
 	python -m twine upload dist/*
 
 distclean:
-	rm -rf build dist man/strfile.8.gz man/unstr.8.gz src/*.egg-info
+	rm -rf build dist man/strfile.${SECTION}.gz man/unstr.${SECTION}.gz src/*.egg-info
+
