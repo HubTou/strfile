@@ -13,7 +13,7 @@ import struct
 import sys
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.1 (August 7, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.2 (August 16, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by command line options
 parameters = {
