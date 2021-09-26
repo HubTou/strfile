@@ -13,7 +13,7 @@ import struct
 import sys
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.2 (August 16, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: strfile, unstr - create a random access file for storing strings v1.0.3 (September 26, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by command line options
 parameters = {
@@ -34,6 +34,14 @@ STR_RANDOM = 0x1
 STR_ORDERED = 0x2
 STR_ROTATED = 0x4
 STR_COMMENTS = 0x8
+
+
+################################################################################
+def initialize_debugging(program_name):
+    """Debugging set up"""
+    console_log_format = program_name + ": %(levelname)s: %(message)s"
+    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
+    logging.disable(logging.INFO)
 
 
 ################################################################################
@@ -475,10 +483,7 @@ def main():
     if program_name != "strfile":
         parameters["Unstr"] = True
 
-    console_log_format = program_name + ": %(levelname)s: %(message)s"
-    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
-    logging.disable(logging.INFO)
-
+    initialize_debugging(program_name)
     process_environment_variables()
     arguments = process_command_line()
 
